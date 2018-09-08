@@ -26,14 +26,17 @@ mongoose.connect('mongodb://localhost:27017/sms');
 mongoose.Promise=global.Promise;
 
 app.use(express.json());
+app.use(bodyparser.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+require('./routes/users.routes')(app);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //add router
 app.use('/',router);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
