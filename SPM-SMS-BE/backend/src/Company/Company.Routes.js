@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var controller = require('./Company.Controller');
 
+/**
+ * initializing routing for company
+ */
 router.post('/',(req,res)=>{
     controller.addCompany(req.body).then((data)=>{
         res.status(data.status).json(data.data);

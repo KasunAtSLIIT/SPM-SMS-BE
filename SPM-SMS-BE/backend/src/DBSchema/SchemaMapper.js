@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const StudentSchema =new Schema({
 
+    /**
+     * db schema for student
+     */
     stu_id:{
         type:String,
         required:true

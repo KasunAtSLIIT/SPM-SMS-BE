@@ -3,6 +3,9 @@ var StudentScema = mongoose.model('Student');
 
 var StudentController = function(){
 
+    /**
+     * student http methods implementations
+     */
     this.addStudent = (data) => {
         return new Promise((resolve,reject)=>{
             StudentScema.create(data).then(()=>{

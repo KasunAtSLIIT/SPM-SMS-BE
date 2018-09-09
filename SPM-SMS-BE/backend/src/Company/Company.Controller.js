@@ -3,6 +3,9 @@ const CompanySchema = mongoose.model('Company');
 
 var CompanyController = function(){
 
+    /**
+     * http methods implementations for company
+     */
     this.addCompany = (data) =>{
         return new Promise((resolve ,reject)=>{
            CompanySchema.create(data).then((res)=>{

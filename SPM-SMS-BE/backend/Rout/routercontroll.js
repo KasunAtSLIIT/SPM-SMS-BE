@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const UserDB =require('../Model/schema');
 
+/**
+ * routings for supervisor allocation
+ */
 router.get('/assign',function (req,res,next) {
 
     UserDB.find().then(function (user) {

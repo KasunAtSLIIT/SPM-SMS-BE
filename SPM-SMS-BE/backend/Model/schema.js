@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/**
+ * db schema for supervisor allocation
+ */
 const AssignSchema = new Schema({
 
   supname:{  type:String,required:true  },
