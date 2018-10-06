@@ -17,23 +17,36 @@ exports.create = function(req, res) {
     }
     else{
 
-        const user = new User({
-            username: req.body.username,
-            password: req.body.password,
-            userRole:req.body.userRole
+
+
+        User.findOne({username : req.body.username}, function (err, user) {
+            if (err){
+                res.send(err);
+            }else if(user){
+               res.status(400).send({
+                   message:"A user with that username has already registered. Please use a different username.."
+               })
+            }
+            else{
+                const user = new User({
+                    username: req.body.username,
+                    password: req.body.password,
+                    userRole:req.body.userRole
+                });
+                // Save user in the database
+                user.save()
+                    .then(function(data){
+                        res.status(200).send({
+                            "message":"Successfully added user"
+                        });
+                    }).catch(function(err){
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating the user."
+                    });
+                });
+            }
         });
 
-        // Save user in the database
-        user.save()
-            .then(function(data){
-                res.status(200).send({
-                    "message":"Successfully added user"
-                });
-            }).catch(function(err){
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
-            });
-        });
     }
 
 };
